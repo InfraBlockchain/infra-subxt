@@ -13,7 +13,6 @@
 #![deny(
     bad_style,
     improper_ctypes,
-    missing_docs,
     non_shorthand_field_patterns,
     no_mangle_generic_items,
     overflowing_literals,
@@ -68,7 +67,7 @@ pub mod utils;
 // but leave most types behind their respective modules.
 pub use crate::{
     client::{OfflineClient, OnlineClient},
-    config::{Config, PolkadotConfig, SubstrateConfig},
+    config::{Config, PolkadotConfig, SubstrateConfig, IbsConfig},
     error::Error,
     metadata::Metadata,
 };

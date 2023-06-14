@@ -2,7 +2,7 @@ use futures::StreamExt;
 use sp_keyring::AccountKeyring;
 use subxt::{
     tx::{PairSigner, TxStatus},
-    OnlineClient, PolkadotConfig,
+    OnlineClient, IbsConfig,
 };
 
 // Generate an interface that we can use from the node's metadata.
@@ -12,7 +12,7 @@ pub mod polkadot {}
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Create a new API client, configured to talk to Polkadot nodes.
-    let api = OnlineClient::<PolkadotConfig>::new().await?;
+    let api = OnlineClient::<IbsConfig>::new().await?;
 
     // Build a balance transfer extrinsic.
     let dest = AccountKeyring::Bob.to_account_id().into();

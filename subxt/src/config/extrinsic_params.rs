@@ -55,11 +55,11 @@ pub trait ExtrinsicParams<Index, Hash>: Debug + 'static {
 /// to be sent/signed with a transaction, then you can define your own type which
 /// implements the [`ExtrinsicParams`] trait.
 #[derive(Derivative)]
-#[derivative(Debug(bound = "Tip: Debug"))]
-pub struct BaseExtrinsicParams<T: Config, Tip: Debug> {
+#[derivative(Debug(bound = "Extra: Debug"))]
+pub struct BaseExtrinsicParams<T: Config, Extra: Debug> {
     era: Era,
     nonce: T::Index,
-    tip: Tip,
+    extra: Extra,
     spec_version: u32,
     transaction_version: u32,
     genesis_hash: T::Hash,
@@ -76,18 +76,18 @@ pub struct BaseExtrinsicParams<T: Config, Tip: Debug> {
 /// version tailored to Polkadot.
 #[derive(Derivative)]
 #[derivative(
-    Debug(bound = "Tip: Debug"),
-    Clone(bound = "Tip: Clone"),
-    Copy(bound = "Tip: Copy"),
-    PartialEq(bound = "Tip: PartialEq")
+    Debug(bound = "Extra: Debug"),
+    Clone(bound = "Extra: Clone"),
+    Copy(bound = "Extra: Copy"),
+    PartialEq(bound = "Extra: PartialEq")
 )]
-pub struct BaseExtrinsicParamsBuilder<T: Config, Tip> {
+pub struct BaseExtrinsicParamsBuilder<T: Config, Extra> {
     era: Era,
     mortality_checkpoint: Option<T::Hash>,
-    tip: Tip,
+    extra: Extra,
 }
 
-impl<T: Config, Tip: Default> BaseExtrinsicParamsBuilder<T, Tip> {
+impl<T: Config, Extra: Default> BaseExtrinsicParamsBuilder<T, Extra> {
     /// Instantiate the default set of [`BaseExtrinsicParamsBuilder`]
     pub fn new() -> Self {
         Self::default()
@@ -106,18 +106,18 @@ impl<T: Config, Tip: Default> BaseExtrinsicParamsBuilder<T, Tip> {
 
     /// Set the tip you'd like to give to the block author
     /// for this transaction.
-    pub fn tip(mut self, tip: impl Into<Tip>) -> Self {
-        self.tip = tip.into();
+    pub fn tip(mut self, tip: impl Into<Extra>) -> Self {
+        self.extra = tip.into();
         self
     }
 }
 
-impl<T: Config, Tip: Default> Default for BaseExtrinsicParamsBuilder<T, Tip> {
+impl<T: Config, Extra: Default> Default for BaseExtrinsicParamsBuilder<T, Extra> {
     fn default() -> Self {
         Self {
             era: Era::Immortal,
             mortality_checkpoint: None,
-            tip: Tip::default(),
+            extra: Extra::default(),
         }
     }
 }
@@ -139,7 +139,7 @@ impl<T: Config, Tip: Debug + Encode + 'static> ExtrinsicParams<T::Index, T::Hash
         BaseExtrinsicParams {
             era: other_params.era,
             mortality_checkpoint: other_params.mortality_checkpoint.unwrap_or(genesis_hash),
-            tip: other_params.tip,
+            extra: other_params.extra,
             nonce,
             spec_version,
             transaction_version,
@@ -150,8 +150,8 @@ impl<T: Config, Tip: Debug + Encode + 'static> ExtrinsicParams<T::Index, T::Hash
 
     fn encode_extra_to(&self, v: &mut Vec<u8>) {
         let nonce: u64 = self.nonce.into();
-        let tip = Encoded(self.tip.encode());
-        (self.era, Compact(nonce), tip).encode_to(v);
+        let extra = Encoded(self.extra.encode());
+        (self.era, Compact(nonce), extra).encode_to(v);
     }
 
     fn encode_additional_to(&self, v: &mut Vec<u8>) {

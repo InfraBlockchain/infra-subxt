@@ -1,6 +1,6 @@
 use sp_keyring::AccountKeyring;
 use subxt::dynamic::Value;
-use subxt::{config::PolkadotConfig, OnlineClient};
+use subxt::{config::IbsConfig, OnlineClient};
 
 #[subxt::subxt(runtime_metadata_path = "../artifacts/polkadot_metadata_small.scale")]
 pub mod polkadot {}
@@ -8,7 +8,7 @@ pub mod polkadot {}
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Create a client to use:
-    let api = OnlineClient::<PolkadotConfig>::new().await?;
+    let api = OnlineClient::<IbsConfig>::new().await?;
 
     // Create a dynamically runtime API payload that calls the
     // `AccountNonceApi_account_nonce` function.

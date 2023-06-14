@@ -1,9 +1,9 @@
-use subxt::{OnlineClient, PolkadotConfig};
+use subxt::{OnlineClient, IbsConfig};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Create a client to use:
-    let api = OnlineClient::<PolkadotConfig>::new().await?;
+    let api = OnlineClient::<IbsConfig>::new().await?;
 
     // A dynamic query to obtain some contant:
     let constant_query = subxt::dynamic::constant("System", "BlockLength");
