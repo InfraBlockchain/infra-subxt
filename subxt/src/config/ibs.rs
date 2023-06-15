@@ -50,6 +50,16 @@ pub struct FeePaymentMetadata {
 	vote_candidate: Option<VoteAccountId>,
 }
 
+impl FeePaymentMetadata {
+	pub fn new(tip: u128, system_token_id: SystemTokenId) -> Self {
+		Self {
+			tip,
+			system_token_id: Some(system_token_id),
+			vote_candidate: None,
+		}
+	}
+}
+
 pub type ParaId = u32;
 pub type PalletId = u32;
 pub type AssetId = u32;
@@ -63,4 +73,14 @@ pub struct SystemTokenId {
 	pub pallet_id: PalletId,
 	#[codec(compact)]
 	pub asset_id: AssetId,
+}
+
+impl SystemTokenId {
+	pub fn new(para_id: ParaId, pallet_id: PalletId, asset_id: AssetId) -> Self {
+		Self {
+			para_id,
+			pallet_id,
+			asset_id,
+		}
+	}
 }

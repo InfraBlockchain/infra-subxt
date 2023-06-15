@@ -106,8 +106,8 @@ impl<T: Config, Extra: Default> BaseExtrinsicParamsBuilder<T, Extra> {
 
     /// Set the tip you'd like to give to the block author
     /// for this transaction.
-    pub fn tip(mut self, tip: impl Into<Extra>) -> Self {
-        self.extra = tip.into();
+    pub fn extra(mut self, extra: impl Into<Extra>) -> Self {
+        self.extra = extra.into();
         self
     }
 }

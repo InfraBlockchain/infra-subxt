@@ -16,7 +16,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Configure the transaction parameters; for Polkadot the tip and era:
     let tx_params = Params::new()
-        .tip(PlainTip::new(1_000))
+        .extra(PlainTip::new(1_000))
         .era(Era::Immortal, api.genesis_hash());
 
     // submit the transaction:
