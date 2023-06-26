@@ -14,6 +14,8 @@ mod tx_client;
 mod tx_payload;
 mod tx_progress;
 
+mod v2;
+
 // The PairSigner impl currently relies on Substrate bits and pieces, so make it an optional
 // feature if we want to avoid needing sp_core and sp_runtime.
 #[cfg(feature = "substrate-compat")]

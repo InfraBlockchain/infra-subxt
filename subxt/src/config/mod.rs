@@ -8,10 +8,15 @@
 //! default Substrate node implementation, and [`PolkadotConfig`] for a
 //! Polkadot node.
 
+// Parity stuff
 pub mod extrinsic_params;
-pub mod polkadot;
-pub mod ibs;
 pub mod substrate;
+pub mod polkadot;
+
+// BCL stuff
+pub mod common;
+pub mod ibs;
+pub mod para;
 
 use codec::{Decode, Encode};
 use core::fmt::Debug;
@@ -21,6 +26,7 @@ pub use extrinsic_params::ExtrinsicParams;
 pub use polkadot::PolkadotConfig;
 pub use substrate::SubstrateConfig;
 pub use ibs::IbsConfig;
+pub use para::{ParaConfig, AssetInfo};
 
 /// Runtime types.
 // Note: the 'static bound isn't strictly required, but currently deriving TypeInfo

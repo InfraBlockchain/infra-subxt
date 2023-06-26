@@ -67,7 +67,7 @@ pub mod utils;
 // but leave most types behind their respective modules.
 pub use crate::{
     client::{OfflineClient, OnlineClient},
-    config::{Config, PolkadotConfig, SubstrateConfig, IbsConfig},
+    config::{Config, PolkadotConfig, SubstrateConfig, IbsConfig, ParaConfig, common::{ChargeSystemToken, Era}},
     error::Error,
     metadata::Metadata,
 };
