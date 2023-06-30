@@ -66,10 +66,14 @@ pub mod utils;
 // Expose a few of the most common types at root,
 // but leave most types behind their respective modules.
 pub use crate::{
-    client::{OfflineClient, OnlineClient},
-    config::{Config, PolkadotConfig, SubstrateConfig, IbsConfig, ParaConfig, common::{ChargeSystemToken, Era}},
+    client::{OfflineClient, OnlineClient, OnlineClientT},
+    config::{
+        Config, PolkadotConfig, SubstrateConfig, IbsConfig, ParaConfig, 
+        common::{ChargeSystemToken, Era, StringLimit}
+    },
     error::Error,
     metadata::Metadata,
+    events::StaticEvent,
 };
 
 /// Re-export external crates that are made use of in the subxt API.

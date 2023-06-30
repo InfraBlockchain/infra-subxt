@@ -37,14 +37,14 @@ pub type ParaExtrinsicParams<T> = BaseExtrinsicParams<T, ChargeSystemToken>;
 pub type ParaExtrinsicParamsBuilder<T> = BaseExtrinsicParamsBuilder<T, ChargeSystemToken>;
 
 pub struct AssetInfo<AssetId, AccountId, Balance> {
-    asset_id: codec::Compact<AssetId>,
-    owner: AccountId,
-    is_sufficient: bool,
-    min_balance: codec::Compact<Balance>,
-    name: Vec<u8>,
-    symbol: Vec<u8>,
-    decimals: u8,
-    is_frozen: bool,
+    pub asset_id: codec::Compact<AssetId>,
+    pub owner: AccountId,
+    pub is_sufficient: bool,
+    pub min_balance: codec::Compact<Balance>,
+    pub name: Vec<u8>,
+    pub symbol: Vec<u8>,
+    pub decimals: u8,
+    pub is_frozen: bool,
 }
 
 impl<AssetId, AccountId, Balance> AssetInfo<AssetId, AccountId, Balance> {

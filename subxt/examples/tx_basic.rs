@@ -11,7 +11,6 @@ use subxt::config::common::ChargeSystemToken;
 // Generate an interface that we can use from the node's metadata.
 #[subxt::subxt(runtime_metadata_path = "../artifacts/ibs_metadata.scale")]
 pub mod ibs {}
-
 pub use ibs::runtime_types::infrablockspace_runtime::RuntimeCall as IbsRuntimeCall;
 pub use ibs::runtime_types::pallet_balances::pallet::Call as BalancesCall;
 

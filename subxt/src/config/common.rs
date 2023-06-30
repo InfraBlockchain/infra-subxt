@@ -1,9 +1,8 @@
 use codec::Encode;
-
 pub use crate::utils::AccountId32;
-
 // Because Era is one of the args to our extrinsic params.
 pub use super::extrinsic_params::Era;
+use sp_runtime::traits::ConstU32;
 
 #[derive(Eq, PartialEq, Default, Encode, Debug)]
 pub struct ChargeSystemToken {
@@ -54,3 +53,5 @@ impl SystemTokenId {
 		}
 	}
 }
+
+pub type StringLimit = ConstU32<128>;
